@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholesale Sales Academy | Powered by 7th Level</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://fast.wistia.com/player.js" async></script>
+    <style>
+        wistia-player:not(:defined) { background: center / contain no-repeat url(''); display: block; filter: blur(5px); padding-top: 56.25%; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            /* Backgrounds — elevation levels */
+            --bg-base: #0a0a0a;
+            --bg-raised: #111111;
+            --bg-surface: #1a1a1a;
+            --bg-elevated: #222222;
+
+            /* Borders */
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-default: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.14);
+
+            /* Text */
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #666666;
+
+            /* Accent */
+            --accent: #8580c5;
+            --accent-hover: #9590d0;
+            --accent-muted: rgba(133,128,197,0.15);
+
+            /* Spacing — 8px grid */
+            --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+            --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+        body { font-family: var(--font); background: var(--bg-base); color: var(--text-secondary); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-5); }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+        p { max-width: 65ch; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            height: 48px; padding: 0 var(--space-6); border-radius: 8px;
+            font-family: var(--font); font-weight: 500; font-size: 15px;
+            transition: background 200ms ease, transform 150ms ease, border-color 200ms ease, box-shadow 200ms ease;
+            border: none; cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--accent); color: #fff;
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover); transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(133,128,197,0.25);
+        }
+        .btn-secondary {
+            background: transparent; color: var(--text-primary);
+            border: 1px solid var(--border-default);
+        }
+        .btn-secondary:hover {
+            border-color: var(--border-hover); background: rgba(255,255,255,0.04);
+        }
+        .btn-sm { height: 40px; padding: 0 var(--space-5); font-size: 14px; }
+
+        /* ── NAV ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10,10,10,0.8); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            height: var(--space-8); max-width: 1200px; margin: 0 auto; padding: 0 var(--space-5);
+        }
+        .nav-logo img { height: 28px; }
+        .nav-links { display: flex; gap: var(--space-6); list-style: none; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-tertiary); transition: color 200ms; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-ctas { display: flex; gap: var(--space-2); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
+
+        /* ── OVERLINE ── */
+        .overline {
+            font-size: 12px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--accent); margin-bottom: var(--space-3);
+            max-width: none;
+        }
+
+        /* Force centering on section headers */
+        .how-header *, .results-header *, .faq-header * {
+            text-align: center; margin-left: auto; margin-right: auto;
+        }
+
+        /* ── GRADIENT TEXT ── */
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── SECTION DIVIDER ── */
+        .section-divider {
+            height: 1px; border: none; margin: 0;
+            background: var(--border-subtle);
+        }
+
+        /* ── GLOW CARD (mouse-tracked radial glow like ecomdegree) ── */
+        .glow-card {
+            position: relative; overflow: hidden;
+        }
+        .glow-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(133,128,197,0.07), transparent 40%
+            );
+            opacity: 0; transition: opacity 500ms ease; pointer-events: none; z-index: 1;
+        }
+        .glow-card:hover::before { opacity: 1; }
+        .glow-card > * { position: relative; z-index: 2; }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 80px 0 var(--space-8);
+            position: relative;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -200px; right: -100px;
+            width: 900px; height: 700px;
+            background: radial-gradient(ellipse at 50% 40%, rgba(133,128,197,0.08) 0%, rgba(133,128,197,0.03) 40%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -100px; left: -200px;
+            width: 600px; height: 400px;
+            background: radial-gradient(ellipse, rgba(133,128,197,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1.1fr;
+            gap: var(--space-8); align-items: start;
+            position: relative; z-index: 1;
+        }
+        .hero-content { padding-top: 0; display: flex; flex-direction: column; }
+        .hero-logo {
+            width: 100px; margin-bottom: var(--space-5);
+            opacity: 0; animation: fadeUp 600ms ease-out 100ms forwards;
+        }
+        .hero h1 {
+            font-size: clamp(2.25rem, 1.5rem + 3.2vw, 3.5rem);
+            font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+            margin-bottom: var(--space-5);
+            opacity: 0; animation: fadeUp 600ms ease-out 200ms forwards;
+        }
+        .hero-sub {
+            font-size: 18px; color: var(--text-secondary); line-height: 1.6;
+            margin-bottom: var(--space-6);
+            opacity: 0; animation: fadeUp 600ms ease-out 300ms forwards;
+        }
+        .hero-ctas {
+            display: flex; gap: var(--space-3);
+            opacity: 0; animation: fadeUp 600ms ease-out 400ms forwards;
+        }
+        .hero-media {
+            position: sticky; top: calc(var(--space-8) + var(--space-5));
+            opacity: 0; animation: fadeUp 600ms ease-out 200ms forwards;
+        }
+        .hero-spacer {
+            height: calc(100px + var(--space-5));
+        }
+        .video-wrap {
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border-default);
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.04),
+                0 4px 8px rgba(0,0,0,0.2),
+                0 16px 48px rgba(0,0,0,0.5),
+                0 0 80px rgba(133,128,197,0.08);
+            position: relative;
+        }
+        .video-wrap::after {
+            content: ''; position: absolute; inset: -1px; border-radius: 17px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02) 50%, transparent);
+            pointer-events: none; z-index: 1;
+        }
+
+        /* ── MARQUEE ── */
+        .marquee { padding: var(--space-4) 0; background: var(--bg-raised); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); overflow: hidden; }
+        .marquee-inner { overflow: hidden; position: relative; }
+        .marquee-inner::before, .marquee-inner::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+        .marquee-inner::before { left: 0; background: linear-gradient(90deg, var(--bg-raised), transparent); }
+        .marquee-inner::after { right: 0; background: linear-gradient(-90deg, var(--bg-raised), transparent); }
+        .marquee-track { display: flex; gap: var(--space-7); animation: scroll 28s linear infinite; width: max-content; align-items: center; }
+        .marquee-track span { font-size: 12px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
+        .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text-tertiary); opacity: 0.4; flex-shrink: 0; }
+        .marquee-logo-text { font-size: 14px; font-weight: 700; color: var(--text-secondary); white-space: nowrap; opacity: 0.6; letter-spacing: 0.02em; }
+
+        /* ── WHY SECTION ── */
+        .why { padding: var(--space-9) 0; background: var(--bg-raised); position: relative; }
+        .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+        .why-content h2 {
+            font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+            font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
+            color: var(--text-primary); margin-bottom: var(--space-5);
+        }
+        .why-content p { font-size: 16px; color: var(--text-secondary); line-height: 1.65; margin-bottom: var(--space-4); }
+        .why-visual {
+            background: var(--bg-surface); border: 1px solid var(--border-subtle);
+            border-radius: 16px; padding: var(--space-7); position: relative; overflow: hidden;
+            min-height: 360px; display: flex; align-items: center; justify-content: center;
+        }
+        .why-visual::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(133,128,197,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .convo-animation { width: 100%; max-width: 340px; position: relative; z-index: 1; }
+        .convo-bubble {
+            background: var(--bg-elevated); border: 1px solid var(--border-default);
+            border-radius: 12px; padding: var(--space-4) var(--space-5);
+            font-size: 14px; color: var(--text-secondary); line-height: 1.5;
+            margin-bottom: var(--space-3); opacity: 0; transform: translateY(10px);
+            transition: opacity 500ms ease, transform 500ms ease;
+        }
+        .convo-bubble.visible { opacity: 1; transform: translateY(0); }
+        .convo-bubble--seller { margin-left: 0; margin-right: var(--space-7); border-bottom-left-radius: 4px; }
+        .convo-bubble--you { margin-right: 0; margin-left: var(--space-7); border-bottom-right-radius: 4px; border-color: rgba(133,128,197,0.2); }
+        .convo-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+        .convo-label--seller { color: var(--text-tertiary); }
+        .convo-label--you { color: var(--accent); }
+
+        /* ── ABOUT ── */
+        .about { padding: var(--space-9) 0; background: var(--bg-base); position: relative; }
+        .about::before {
+            content: ''; position: absolute; top: 50%; left: -100px; transform: translateY(-50%);
+            width: 500px; height: 500px;
+            background: radial-gradient(ellipse, rgba(133,128,197,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: start; position: relative; z-index: 1; }
+        .about-image {
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 8px 40px rgba(0,0,0,0.4), 0 0 60px rgba(133,128,197,0.06);
+            position: relative;
+        }
+        .about-image::after {
+            content: ''; position: absolute; inset: -1px; border-radius: 17px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 50%);
+            pointer-events: none;
+        }
+        .about-text h2 {
+            font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+            font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
+            color: var(--text-primary); margin-bottom: var(--space-5);
+        }
+        .about-text p { font-size: 16px; color: var(--text-secondary); line-height: 1.65; margin-bottom: var(--space-4); }
+        .about-text p:last-of-type { margin-bottom: 0; }
+        .about-stats {
+            display: flex; gap: var(--space-7); margin-top: var(--space-6);
+            padding-top: var(--space-5); border-top: 1px solid var(--border-subtle);
+        }
+        .about-stat strong {
+            display: block; font-size: 24px; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 4px;
+        }
+        .about-stat span { font-size: 13px; color: var(--text-tertiary); }
+
+        /* ── HOW IT WORKS ── */
+        .how { padding: var(--space-9) 0; background: var(--bg-raised); position: relative; }
+        .how::before {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 800px; height: 500px;
+            background: radial-gradient(ellipse, rgba(133,128,197,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .how-header { text-align: center; margin-bottom: var(--space-8); max-width: 600px; margin-left: auto; margin-right: auto; }
+        .how-header h2 {
+            font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+            font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+        .step {
+            background: linear-gradient(180deg, var(--bg-surface) 0%, #151515 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px; padding: var(--space-6);
+            transition: border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+            opacity: 0; transform: translateY(20px);
+            position: relative; overflow: hidden;
+        }
+        .step::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(133,128,197,0.06), transparent 40%
+            );
+            opacity: 0; transition: opacity 500ms ease; pointer-events: none;
+        }
+        .step:hover::before { opacity: 1; }
+        .step.visible {
+            opacity: 1; transform: translateY(0);
+        }
+        .step:nth-child(1) { transition-delay: 0ms; }
+        .step:nth-child(2) { transition-delay: 120ms; }
+        .step:nth-child(3) { transition-delay: 240ms; }
+        .step:hover {
+            border-color: rgba(133,128,197,0.2); transform: translateY(-4px);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.3), 0 0 40px rgba(133,128,197,0.06);
+        }
+        .step-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 12px;
+            background: linear-gradient(135deg, rgba(133,128,197,0.15), rgba(133,128,197,0.05));
+            border: 1px solid rgba(133,128,197,0.2);
+            font-size: 16px; font-weight: 700; color: var(--accent);
+            margin-bottom: var(--space-5);
+        }
+        .step-icon { width: 36px; height: 36px; color: var(--accent); margin: 0 auto var(--space-4); display: block; }
+        .step h3 { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2); line-height: 1.3; }
+        .step p { font-size: 15px; color: var(--text-secondary); line-height: 1.55; }
+        .step { text-align: center; }
+        .step-num { margin: 0 auto var(--space-5); }
+
+        /* ── CTA BAND ── */
+        .cta-band {
+            padding: var(--space-9) 0; background: var(--bg-base);
+            text-align: center; position: relative;
+        }
+        .cta-band::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(133,128,197,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-band h2 { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem); font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-3); text-align: center; }
+        .cta-band p { font-size: 16px; color: var(--text-secondary); margin: 0 auto var(--space-6); text-align: center; max-width: none; }
+        .cta-band .cta-row { display: flex; justify-content: center; gap: var(--space-3); position: relative; z-index: 1; }
+
+        /* ── TESTIMONIALS ── */
+        .results { padding: var(--space-9) 0; background: var(--bg-raised); }
+        .results-header { text-align: center; margin-bottom: var(--space-7); max-width: 600px; margin-left: auto; margin-right: auto; }
+        .results-header h2 {
+            font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+            font-weight: 700; line-height: 1.2; color: var(--text-primary);
+        }
+        .t-list { display: flex; flex-direction: column; gap: var(--space-3); }
+        .t-item {
+            display: grid; grid-template-columns: 1fr 1.4fr;
+            gap: var(--space-5); align-items: center;
+            background: linear-gradient(180deg, var(--bg-surface) 0%, #151515 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px; padding: var(--space-5);
+            transition: border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+            position: relative; overflow: hidden;
+        }
+        .t-item::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(133,128,197,0.06), transparent 40%
+            );
+            opacity: 0; transition: opacity 500ms ease; pointer-events: none;
+        }
+        .t-item:hover::before { opacity: 1; }
+        .t-item:hover {
+            border-color: rgba(133,128,197,0.15); transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .t-caption {
+            font-size: 20px; font-weight: 600; color: var(--text-primary);
+            line-height: 1.35; margin-bottom: var(--space-3);
+        }
+        .t-video {
+            border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.4);
+            position: relative; z-index: 2;
+        }
+        .t-name { font-size: 15px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+        .t-quote { font-size: 15px; color: var(--text-tertiary); font-style: italic; margin-top: 6px; line-height: 1.5; }
+
+        /* ── FAQ ── */
+        .faq { padding: var(--space-9) 0; background: var(--bg-base); }
+        .faq-header { text-align: center; margin-bottom: var(--space-6); max-width: 600px; margin-left: auto; margin-right: auto; }
+        .faq-header h2 { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem); font-weight: 700; color: var(--text-primary); }
+        .faq-list { max-width: 680px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border-subtle); }
+        .faq-q {
+            width: 100%; background: none; border: none; color: var(--text-primary);
+            font-family: var(--font); font-size: 15px; font-weight: 600;
+            text-align: left; padding: var(--space-5) var(--space-7) var(--space-5) 0;
+            cursor: pointer; position: relative; transition: color 200ms;
+        }
+        .faq-q:hover { color: var(--accent); }
+        .faq-q::after { content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 20px; font-weight: 300; color: var(--text-tertiary); }
+        .faq-item.active .faq-q::after { content: '−'; color: var(--accent); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 400ms ease; }
+        .faq-item.active .faq-a { max-height: 300px; }
+        .faq-a p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; padding-bottom: var(--space-5); }
+
+        /* ── FINAL CTA ── */
+        .final-cta {
+            padding: var(--space-9) 0; background: var(--bg-raised); text-align: center;
+            position: relative;
+        }
+        .final-cta::before {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 800px; height: 500px;
+            background: radial-gradient(ellipse, rgba(133,128,197,0.07) 0%, rgba(133,128,197,0.02) 40%, transparent 70%);
+            pointer-events: none;
+        }
+        .final-cta h2 { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem); font-weight: 700; margin-bottom: var(--space-4); letter-spacing: -0.02em; }
+        .final-cta p { font-size: 17px; color: var(--text-secondary); margin: 0 auto var(--space-7); line-height: 1.5; }
+        .final-cta .cta-row { display: flex; justify-content: center; gap: var(--space-3); position: relative; z-index: 1; }
+
+        /* ── YOUTUBE FEED ── */
+        .yt-section { padding: var(--space-9) 0; background: var(--bg-base); }
+        .yt-header { text-align: center; margin-bottom: var(--space-7); max-width: 600px; margin-left: auto; margin-right: auto; }
+        .yt-header *, .yt-header { text-align: center; margin-left: auto; margin-right: auto; }
+        .yt-header h2 { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem); font-weight: 700; color: var(--text-primary); }
+        .yt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+        .yt-card {
+            background: var(--bg-surface); border: 1px solid var(--border-subtle);
+            border-radius: 12px; overflow: hidden;
+            transition: border-color 200ms, transform 300ms;
+        }
+        .yt-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .yt-thumb { aspect-ratio: 16/9; overflow: hidden; position: relative; }
+        .yt-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .yt-thumb::after {
+            content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.7);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 14px; pointer-events: none;
+        }
+        .yt-title { padding: var(--space-4); font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+        .yt-follow {
+            text-align: center; margin-top: var(--space-7);
+            display: flex; justify-content: center; gap: var(--space-4); align-items: center;
+        }
+        .yt-follow a {
+            font-size: 14px; font-weight: 500; color: var(--text-secondary);
+            transition: color 200ms; display: inline-flex; align-items: center; gap: 8px;
+            background: var(--bg-surface); border: 1px solid var(--border-subtle);
+            padding: 10px 20px; border-radius: 8px;
+        }
+        .yt-follow a:hover { border-color: var(--border-hover); color: var(--text-primary); }
+        .yt-follow .divider-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text-tertiary); }
+        .yt-follow svg { width: 18px; height: 18px; flex-shrink: 0; }
+        .show-more-btn {
+            display: block; margin: var(--space-6) auto 0; padding: 12px 32px;
+            background: var(--bg-surface); border: 1px solid var(--border-subtle);
+            border-radius: 8px; color: var(--text-secondary); font-family: var(--font);
+            font-size: 14px; font-weight: 500; cursor: pointer;
+            transition: border-color 200ms, color 200ms;
+        }
+        .show-more-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+        .yt-card iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+        .yt-card .yt-placeholder {
+            aspect-ratio: 16/9; position: relative; cursor: pointer; overflow: hidden;
+            background: #000;
+        }
+        .yt-card .yt-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .yt-card .yt-placeholder::after {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 56px; height: 56px; border-radius: 50%;
+            background: rgba(0,0,0,0.75);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: center; background-size: 24px;
+            pointer-events: none; transition: background-color 200ms;
+        }
+        .yt-card .yt-placeholder:hover::after { background-color: rgba(133,128,197,0.9); }
+        .yt-extra { display: none; }
+
+        /* ── MARQUEE LOGOS ── */
+        .marquee-logo { height: 20px; opacity: 0.5; flex-shrink: 0; filter: brightness(0) invert(1); }
+
+        /* ── FOOTER ── */
+        .footer { padding: var(--space-7) 0 var(--space-5); border-top: 1px solid var(--border-subtle); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-5); }
+        .footer-logo img { height: 22px; opacity: 0.5; }
+        .footer-links { display: flex; gap: var(--space-5); }
+        .footer-links a { font-size: 13px; color: var(--text-tertiary); transition: color 200ms; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-legal p { font-size: 11px; color: var(--text-tertiary); opacity: 0.5; line-height: 1.5; }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-sub, .hero h1 { margin-left: auto; margin-right: auto; }
+            .hero-ctas { justify-content: center; }
+            .hero-media { position: relative; top: 0; max-width: 560px; margin: var(--space-6) auto 0; }
+            .hero-logo { margin-left: auto; margin-right: auto; }
+            .about-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+            .about-image { max-width: 400px; margin: 0 auto; }
+            .steps { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+            .t-item { grid-template-columns: 1fr; }
+            .yt-grid { grid-template-columns: 1fr 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: var(--space-4); text-align: center; }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .nav-ctas { display: none; }
+            .mobile-toggle { display: block; }
+        }
+
+        .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-5); }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { font-size: 16px; font-weight: 500; color: var(--text-secondary); transition: color 200ms; }
+        .mobile-menu a:hover { color: var(--accent); }
+        .mobile-menu .btn { margin-top: var(--space-3); }
+        .mobile-close { position: absolute; top: var(--space-5); right: var(--space-5); background: none; border: none; color: var(--text-primary); font-size: 28px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <ul class="nav-links">
+                <li><a href="#why">Why This Approach</a></li>
+                <li><a href="#about">Who is Jon</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#results">Results</a></li>
+            </ul>
+            <div class="nav-ctas">
+                <a href="https://www.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary btn-sm">Book a Call to Learn More</a>
+                <a href="https://live.wholesalesalesacademy.com/same-qs" target="_blank" class="btn btn-primary btn-sm">Attend Our Next Event</a>
+            </div>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()">&#9776;</button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="toggleMobileMenu()">&times;</button>
+        <a href="#why" onclick="toggleMobileMenu()">Why This Approach</a>
+        <a href="#about" onclick="toggleMobileMenu()">Who is Jon</a>
+        <a href="#how" onclick="toggleMobileMenu()">How It Works</a>
+        <a href="#results" onclick="toggleMobileMenu()">Results</a>
+        <a href="https://www.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary" onclick="toggleMobileMenu()">Book a Call to Learn More</a>
+        <a href="https://live.wholesalesalesacademy.com/same-qs" target="_blank" class="btn btn-primary" onclick="toggleMobileMenu()">Attend Our Next Event</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <img src="assets/logo.png" alt="WSA" class="hero-logo">
+                    <p class="overline">For Wholesalers &amp; Acquisitions Teams</p>
+                    <h1 class="gradient-text">Close more deals. Build a team that sells without you.</h1>
+                    <p class="hero-sub">Sales training built to work with human behavior instead of against it. Learn a sales process designed to get sellers to trust you, open up to you, and close themselves.</p>
+                    <div class="hero-ctas">
+                        <a href="https://live.wholesalesalesacademy.com/same-qs" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
+                        <a href="https://www.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-media">
+                    <div class="hero-spacer"></div>
+                    <div class="video-wrap">
+                        <wistia-player media-id="kgvqb4tt25" aspect="1.7777777777777777"></wistia-player>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY THIS APPROACH -->
+    <section class="why" id="why">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-content reveal">
+                    <p class="overline">Why This Approach</p>
+
+                    <h2>Every wholesaler sounds the exact same. That's why sellers can't tell you apart.</h2>
+                    <p>Build rapport, get the condition, timeline, motivation, price.
+                    Every other wholesaler who calls that seller asks those same four things.</p>
+
+                    <p>So the seller picks whoever offers the most money, and you're stuck competing on price instead of trust.
+                    Smaller assignment fees, lost contracts, and deals going to your competition.</p>
+
+                    <p>The reason that keeps happening is because you don't actually have a full understanding of how your own process works.
+                    And the way we solve that is by giving you a systematic approach that actually works with human behaviors, so you can close deals that your competition is losing.</p>
+                </div>
+                <div class="why-visual reveal">
+                    <div class="convo-animation" id="convoAnim">
+                        <div class="convo-bubble convo-bubble--seller">
+                            <div class="convo-label convo-label--seller">Seller</div>
+                            "Look, I've already talked to like five other people. Can you just give me a number?"
+                        </div>
+                        <div class="convo-bubble convo-bubble--you">
+                            <div class="convo-label convo-label--you">You (needs-based)</div>
+                            "I totally get it. And I don't want to waste your time. Can I ask, what's going on that made you want to sell in the first place?"
+                        </div>
+                        <div class="convo-bubble convo-bubble--seller">
+                            <div class="convo-label convo-label--seller">Seller</div>
+                            "Honestly... I'm three months behind on payments. I just can't keep up anymore."
+                        </div>
+                        <div class="convo-bubble convo-bubble--you">
+                            <div class="convo-label convo-label--you">You (needs-based)</div>
+                            "How long has that been going on? And what happens if nothing changes in the next 60 days?"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT JON -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="assets/jon-jeremy-cropped.jpg" alt="Jon Lallande and Jeremy Miner at 7th Level HQ">
+                </div>
+                <div class="about-text reveal">
+
+                    <h2>Who is Jon Lallande?</h2>
+                    <p>Former Marine Recon Scout Sniper turned 7-figure wholesaler.
+                    Jon took the discipline, structure, and ability to perform under pressure from the Marine Corps and applied it to building a repeatable sales process for acquisitions teams.</p>
+
+                    <p>He runs his wholesale operation remotely from Medellin, Colombia.
+                    Went from zero to $141K in his third month and has closed $240K+ in a single month from his own deals.</p>
+
+                    <p>Jon spent over $50K on sales training before realizing none of it was built for talking to distressed homeowners.
+                    Sellers who are behind on payments, going through a foreclosure, dealing with probate, or just inherited a property they don't want.</p>
+
+                    <p>So he partnered with Jeremy Miner and 7th Level to build a needs-based selling process from scratch for wholesalers.
+                    Jon still runs his own deals, does live coaching calls with students every week, and owns over 100 buy-and-hold units.</p>
+                    <div style="display:flex;gap:12px;margin-top:var(--space-5);">
+                        <a href="https://live.wholesalesalesacademy.com/same-qs" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
+                        <a href="https://www.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how" id="how">
+        <div class="container">
+            <div class="how-header reveal">
+
+                <h2>How does this process actually work?</h2>
+            </div>
+            <div class="steps reveal">
+                <div class="step">
+                    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h4"/></svg>
+                    <div class="step-num">01</div>
+                    <h3>Uncover what the seller actually needs.</h3>
+                    <p>Not "what's your bottom line?" The right questions get past the surface and into what's actually driving their decision to sell.</p>
+                </div>
+                <div class="step">
+                    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <div class="step-num">02</div>
+                    <h3>Work with human behavior.</h3>
+                    <p>When your process fights how people make decisions, sellers shut down and get defensive. When it works with them, they open up and trust you.</p>
+                </div>
+                <div class="step">
+                    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <div class="step-num">03</div>
+                    <h3>Bigger spreads. More contracts signed.</h3>
+                    <p>Sellers choose you because you understood their situation. Not because you offered the most. That means bigger assignment fees and deals your competition doesn't even know they lost.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band" id="event">
+        <div class="container">
+            <h2>Want to see this on real seller conversations?</h2>
+            <p>Live training where we walk through the entire needs-based approach on actual acquisitions calls.</p>
+            <div class="cta-row">
+                <a href="https://live.wholesalesalesacademy.com/same-qs" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
+                <a href="https://www.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- RESULTS -->
+    <section class="results" id="results">
+        <div class="container">
+            <div class="results-header reveal">
+
+                <h2>Here's what other wholesalers have to say who implemented this sales process.</h2>
+            </div>
+            <div class="t-list">
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If you're just getting into wholesaling or pivoting from another niche and starting from scratch</p>
+                        <p class="t-name">Andrew Collier</p>
+                        <p class="t-quote">"We would not be anywhere near where we are today if it wasn't for you and your guys' training."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="cwprlz7tef" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If you're doing deals but you know you could be closing more</p>
+                        <p class="t-name">Ben Meyer</p>
+                        <p class="t-quote">"It worked the second day."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="rangk806jo" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If you're closing deals with decent conversions but you want to take your sales to the next level</p>
+                        <p class="t-name">Joey Smith</p>
+                        <p class="t-quote">"I didn't even know how to overcome a think about it objection... now I'm handling ridiculously complex fear objections easily."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="tzr2xr3c19" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If you've tried other sales training before and it didn't stick</p>
+                        <p class="t-name">Lisa Martinez</p>
+                        <p class="t-quote">"I Had Done Other Sales Training Before. This One Was Different."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="kice6zo4nk" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If your seller conversations feel flat or transactional and you know something needs to change</p>
+                        <p class="t-name">Rohan</p>
+                        <p class="t-quote">"It just catapulted every conversation I had with sellers."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="z0gfsi4rjn" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If deals are stalling because you can't get past the price conversation</p>
+                        <p class="t-name">Eitan</p>
+                        <p class="t-quote">"I don't have any anxiety or stress as it relates to getting deals."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="46dy2g6j4a" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If you're using a basic sales process and sellers are getting defensive and shutting down</p>
+                        <p class="t-name">Dylan Rodriguez</p>
+                        <p class="t-quote">"Actually learning how to connect with people was the thing that clicked."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="h3ynnrp6rp" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If you've been in other wholesaling programs but never actually got a real sales process out of them</p>
+                        <p class="t-name">Justin Bourn</p>
+                        <p class="t-quote">"It's not guesswork anymore."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="4j6vhjbh9r" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+                <div class="t-item reveal">
+                    <div>
+                        <p class="t-caption">If you've made an impact but want to go further</p>
+                        <p class="t-name">Brandon Jarvela</p>
+                        <p class="t-quote">"You've made such a huge impact on our business."</p>
+                    </div>
+                    <div class="t-video"><wistia-player media-id="xc63729bb8" aspect="1.7777777777777777"></wistia-player></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-header reveal">
+
+                <h2>Common questions.</h2>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-q">How is this different from other wholesaling coaching?</button>
+                    <div class="faq-a"><p>Most coaching programs take generic sales tactics and adapt them for real estate. This was built from the ground up for the conversations wholesalers have with distressed sellers. A homeowner who's behind on payments, going through a divorce, or dealing with a probate property isn't a normal sales prospect. They need a completely different approach. You also get live calls every week with a practicing operator who's still closing his own deals, not pre-recorded modules from someone who stopped wholesaling years ago.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">I'm already doing 3-10 deals a month. Is this for me?</button>
+                    <div class="faq-a"><p>If you're the only person on your team who can close a real conversation, your business depends entirely on you. Your acquisitions reps probably close laydowns but freeze up when a seller says "let me think about it" or "I want to keep it." The reason that happens is because you don't have a teachable process. You close on instinct, and instinct isn't something you can hand off. That's exactly what this fixes. You get a systematic approach your whole team can follow.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Is Jon still actively wholesaling?</button>
+                    <div class="faq-a"><p>Yes. Jon runs a 7-figure wholesale operation remotely from Colombia. He's closed $240K+ in a single month from his own deals. Everything taught here gets tested on live acquisitions calls before it's ever taught to a student. He's not someone who did a few deals and moved on to just coaching.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">What is needs-based selling and why does it work for wholesalers?</button>
+                    <div class="faq-a"><p>Most wholesalers ask every seller the same four questions. Build rapport, get the condition, timeline, motivation, price. Every other wholesaler who calls that seller asks the exact same things. So the seller can't tell you apart, and they just go with whoever offers the most money. Needs-based selling uses different types of questions, like connection questions and consequence questions, to uncover what's actually driving the seller's decision. That's how sellers choose you even when you're not the highest offer, because you're the only one who actually understood their situation.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">Will this work if I'm cold calling or door knocking?</button>
+                    <div class="faq-a"><p>Yes. The needs-based approach works regardless of how you're getting in front of sellers. Whether you're cold calling, door knocking foreclosures, working inbound leads from PPC, or following up on direct mail, the seller conversation is the same. The process teaches you how to navigate that conversation in a way that builds trust and gets sellers to open up.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">How do I handle sellers who just want an offer?</button>
+                    <div class="faq-a"><p>When a seller says "just give me a number," it means they don't trust you enough yet to have a real conversation. The needs-based process teaches you how to slow that down and get past the surface-level request to understand what's actually going on. Once you do that, the conversation shifts from price to problem-solving, and the seller stops comparing you to every other wholesaler who called them that week.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q">What if I'm just getting started in wholesaling?</button>
+                    <div class="faq-a"><p>We work with everyone from people trying to close their first deal to operators running 8-figure businesses with full acquisitions teams. If you're new, this is actually the best time to learn because you'll build the right habits from day one instead of developing bad patterns you have to unlearn later.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta" id="book">
+        <div class="container">
+            <h2 class="gradient-text">Your leads aren't the problem.</h2>
+            <p>It's what happens on the phone. See the process in action or talk to our team.</p>
+            <div class="cta-row">
+                <a href="https://live.wholesalesalesacademy.com/same-qs" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
+                <a href="https://www.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MORE FROM JON -->
+    <section class="yt-section">
+        <div class="container">
+            <div class="yt-header reveal">
+
+                <h2>Want more content from Jon? Check it out below.</h2>
+            </div>
+            <div class="yt-grid reveal" id="ytGrid">
+                <div class="yt-card">
+                    <div class="yt-placeholder" data-vid="u3JBRAZuIEo"><img src="https://img.youtube.com/vi/u3JBRAZuIEo/hqdefault.jpg" alt="" loading="lazy"></div>
+                    <div class="yt-title">The Only Training You Need to Build Rapport With Sellers</div>
+                </div>
+                <div class="yt-card">
+                    <div class="yt-placeholder" data-vid="Vbfu0Pg4m20"><img src="https://img.youtube.com/vi/Vbfu0Pg4m20/hqdefault.jpg" alt="" loading="lazy"></div>
+                    <div class="yt-title">4 Questions to Get Sellers to Close Themselves</div>
+                </div>
+                <div class="yt-card">
+                    <div class="yt-placeholder" data-vid="IurrY4z_2HY"><img src="https://img.youtube.com/vi/IurrY4z_2HY/hqdefault.jpg" alt="" loading="lazy"></div>
+                    <div class="yt-title">Free Cold Call Script vs $18k Cold Call Script</div>
+                </div>
+                <div class="yt-card">
+                    <div class="yt-placeholder" data-vid="7pDyiHUCc58"><img src="https://img.youtube.com/vi/7pDyiHUCc58/hqdefault.jpg" alt="" loading="lazy"></div>
+                    <div class="yt-title">Sellers Don't Like You - The Psychology Behind Building Trust</div>
+                </div>
+                <div class="yt-card">
+                    <div class="yt-placeholder" data-vid="GmFDbRb76rI"><img src="https://img.youtube.com/vi/GmFDbRb76rI/hqdefault.jpg" alt="" loading="lazy"></div>
+                    <div class="yt-title">What 1% Closers Do That 99% Never Learn</div>
+                </div>
+                <div class="yt-card">
+                    <div class="yt-placeholder" data-vid="T1s8FQ34Tzw"><img src="https://img.youtube.com/vi/T1s8FQ34Tzw/hqdefault.jpg" alt="" loading="lazy"></div>
+                    <div class="yt-title">How to Prevent "Just Give Me an Offer"</div>
+                </div>
+            </div>
+            <div class="yt-follow">
+                <a href="https://www.youtube.com/@jonlallande" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    Subscribe on YouTube
+                </a>
+                <a href="https://www.instagram.com/jonlallande22/" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    Follow on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="#" class="footer-logo"><img src="assets/logo.png" alt="WSA"></a>
+                <div class="footer-links">
+                    <a href="#about">About Jon</a>
+                    <a href="#how">How It Works</a>
+                    <a href="#results">Results</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="https://www.wholesalesalesacademy.com/book-a-call-today" target="_blank">Book a Call</a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2026 Wholesale Sales Academy. Powered by 7th Level. Not endorsed by Facebook/META. Results vary based on effort, market, and experience.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) item.classList.add('active');
+            });
+        });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // Stagger step cards
+        const stepObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const steps = entry.target.querySelectorAll('.step');
+                    steps.forEach((step, i) => { setTimeout(() => step.classList.add('visible'), i * 120); });
+                    stepObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        const stepsContainer = document.querySelector('.steps');
+        if (stepsContainer) stepObserver.observe(stepsContainer);
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        // Conversation animation
+        const convoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bubbles = entry.target.querySelectorAll('.convo-bubble');
+                    bubbles.forEach((b, i) => { setTimeout(() => b.classList.add('visible'), i * 600); });
+                    convoObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        const convoEl = document.getElementById('convoAnim');
+        if (convoEl) convoObserver.observe(convoEl);
+        // Click YouTube thumbnail — try embed, fallback to YouTube.com
+        document.addEventListener('click', function(e) {
+            const placeholder = e.target.closest('.yt-placeholder');
+            if (!placeholder) return;
+            const vid = placeholder.dataset.vid;
+            if (!vid) return;
+            window.open('https://www.youtube.com/watch?v=' + vid, '_blank');
+        });
+        // Mouse-tracked glow on cards (ecomdegree-style)
+        document.querySelectorAll('.step, .t-item').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+                card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+            });
+        });
+    </script>
+</body>
+</html>
