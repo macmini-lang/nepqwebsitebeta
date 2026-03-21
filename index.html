@@ -523,6 +523,84 @@
         @media (max-width: 768px) {
             .nav-links, .nav-ctas { display: none; }
             .mobile-toggle { display: block; }
+
+            /* Hero — kill dead space */
+            .hero { padding: 72px 0 var(--space-7); }
+            .hero-logo { width: 72px; margin-bottom: var(--space-4); }
+            .hero h1 { font-size: 1.6rem; margin-bottom: var(--space-3); }
+            .hero-sub { font-size: 15px; margin-bottom: var(--space-5); }
+            .hero-spacer { display: none; }
+            .hero-media { margin-top: var(--space-4); }
+            .hero-ctas { flex-direction: column; gap: var(--space-2); }
+            .hero-ctas .btn { width: 100%; }
+            .video-wrap { border-radius: 10px; }
+
+            /* Sections — tighter padding */
+            .why, .about, .how, .cta-band, .results, .faq, .final-cta, .yt-section { padding: var(--space-7) 0; }
+
+            /* Why section */
+            .why-content h2 { font-size: 1.3rem; }
+            .why-content p { font-size: 14px; }
+            .convo-bubble { font-size: 13px; padding: var(--space-3) var(--space-4); }
+            .why-visual { padding: var(--space-5); min-height: auto; }
+
+            /* About */
+            .about-text h2 { font-size: 1.3rem; }
+            .about-text p { font-size: 14px; }
+            .about-text .btn { width: 100%; }
+            .about-text div[style] { flex-direction: column; }
+            .about-text div[style] .btn { width: 100%; }
+
+            /* How it works */
+            .how-header h2 { font-size: 1.3rem; }
+            .step { padding: var(--space-5); }
+            .step h3 { font-size: 16px; }
+            .step p { font-size: 14px; }
+            .step-icon { width: 28px; height: 28px; }
+            .step-num { width: 36px; height: 36px; font-size: 14px; }
+
+            /* CTA band */
+            .cta-band h2 { font-size: 1.2rem; }
+            .cta-band p { font-size: 14px; }
+            .cta-band .cta-row { flex-direction: column; gap: var(--space-2); }
+            .cta-band .cta-row .btn { width: 100%; max-width: 320px; margin: 0 auto; }
+
+            /* Testimonials */
+            .results-header h2 { font-size: 1.2rem; }
+            .t-item { padding: var(--space-4); gap: var(--space-4); }
+            .t-caption { font-size: 15px; }
+            .t-name { font-size: 13px; }
+            .t-quote { font-size: 13px; }
+            .t-video { border-radius: 8px; }
+
+            /* FAQ */
+            .faq-header h2 { font-size: 1.2rem; }
+            .faq-q { font-size: 14px; padding: var(--space-4) var(--space-6) var(--space-4) 0; }
+            .faq-a p { font-size: 13px; }
+
+            /* Final CTA */
+            .final-cta h2 { font-size: 1.3rem; }
+            .final-cta p { font-size: 14px; }
+            .final-cta .cta-row { flex-direction: column; gap: var(--space-2); }
+            .final-cta .cta-row .btn { width: 100%; max-width: 320px; margin: 0 auto; }
+
+            /* YouTube */
+            .yt-header h2 { font-size: 1.2rem; }
+            .yt-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+            .yt-title { font-size: 13px; padding: var(--space-3); }
+            .yt-follow { flex-direction: column; gap: var(--space-2); }
+            .yt-follow a { width: 100%; justify-content: center; }
+
+            /* Footer */
+            .footer-inner { flex-direction: column; gap: var(--space-4); text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; gap: var(--space-4); }
+
+            /* Buttons */
+            .btn { height: 44px; font-size: 14px; }
+            .btn-sm { height: 38px; font-size: 13px; }
+
+            /* Container */
+            .container { padding: 0 var(--space-4); }
         }
 
         .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-5); }
