@@ -634,5 +634,15 @@
     const stepsEl = document.querySelector('.steps');
     if (stepsEl) stepIO.observe(stepsEl);
 </script>
+<script>
+// Capture UTMs and store in sessionStorage so they survive to qual/disqual pages
+(function() {
+    var params = new URLSearchParams(window.location.search);
+    var utmKeys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+    var stored = {};
+    utmKeys.forEach(function(k) { if (params.get(k)) stored[k] = params.get(k); });
+    if (Object.keys(stored).length) sessionStorage.setItem('osprex_utms', JSON.stringify(stored));
+})();
+</script>
 </body>
 </html>

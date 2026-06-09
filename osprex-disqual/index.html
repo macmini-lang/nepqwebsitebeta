@@ -156,5 +156,20 @@
 
 </div>
 
+<script>
+// Restore UTMs from sessionStorage so attribution carries through from /osprex
+(function() {
+    try {
+        var stored = JSON.parse(sessionStorage.getItem('osprex_utms') || '{}');
+        if (!Object.keys(stored).length) return;
+        var params = new URLSearchParams(window.location.search);
+        var changed = false;
+        Object.keys(stored).forEach(function(k) {
+            if (!params.get(k)) { params.set(k, stored[k]); changed = true; }
+        });
+        if (changed) history.replaceState(null, '', '?' + params.toString() + window.location.hash);
+    } catch(e) {}
+})();
+</script>
 </body>
 </html>
