@@ -182,7 +182,28 @@
             border-color: var(--border-md); transform: translateY(-3px);
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
+        .result-card-img {
+            width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+            cursor: zoom-in; transition: opacity 200ms;
+        }
+        .result-card-img:hover { opacity: 0.82; }
         .result-card-body { padding: 20px; }
+
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0,0,0,0.93); align-items: center; justify-content: center;
+            cursor: zoom-out;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,0.8); }
+        .lightbox-close {
+            position: absolute; top: 20px; right: 24px;
+            color: var(--grey); font-size: 32px; line-height: 1;
+            cursor: pointer; background: none; border: none; font-family: var(--font);
+            transition: color 150ms;
+        }
+        .lightbox-close:hover { color: var(--white); }
         .result-num {
             font-family: var(--display); font-size: 2.2rem;
             color: var(--white); line-height: 1; margin-bottom: 4px;
@@ -358,7 +379,7 @@
         </div>
         <div class="results-grid">
             <div class="result-card reveal">
-
+                <img class="result-card-img" src="../assets/osprex/matt-results.png" alt="Max results" onclick="openLightbox(this.src)">
                 <div class="result-card-body">
                     <div class="result-num">12.5% → 25%</div>
                     <div class="result-name">Max</div>
@@ -367,7 +388,7 @@
                 </div>
             </div>
             <div class="result-card reveal reveal-d1">
-
+                <img class="result-card-img" src="../assets/osprex/justin-results.jpg" alt="Justin results" onclick="openLightbox(this.src)">
                 <div class="result-card-body">
                     <div class="result-num">26 → 8 Leads</div>
                     <div class="result-name">Justin</div>
@@ -376,7 +397,7 @@
                 </div>
             </div>
             <div class="result-card reveal">
-
+                <img class="result-card-img" src="../assets/osprex/dylan-results.jpg" alt="Dylan results" onclick="openLightbox(this.src)">
                 <div class="result-card-body">
                     <div class="result-num">30 → 5 Leads</div>
                     <div class="result-name">Dylan</div>
@@ -385,7 +406,7 @@
                 </div>
             </div>
             <div class="result-card reveal reveal-d1">
-
+                <img class="result-card-img" src="../assets/osprex/jb-results.jpg" alt="JB results" onclick="openLightbox(this.src)">
                 <div class="result-card-body">
                     <div class="result-num">27 → 12.5 Leads</div>
                     <div class="result-name">JB</div>
@@ -454,8 +475,25 @@
     </div>
 </footer>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
 <script src="https://embed.typeform.com/next/embed.js"></script>
 <script>
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
     const io = new IntersectionObserver(e => {
         e.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); io.unobserve(el.target); } });
     }, { threshold: 0.1 });
