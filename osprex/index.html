@@ -75,62 +75,103 @@
 
         /* ── HERO ── */
         .hero {
-            padding: 110px 0 80px; position: relative; overflow: hidden; text-align: center;
+            padding: 100px 0 0; position: relative; overflow: hidden;
         }
-        /* Radial glow behind headline */
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 900px; height: 700px;
-            background: radial-gradient(ellipse 70% 60% at 50% 30%,
-                rgba(240,240,240,0.05) 0%,
-                rgba(240,240,240,0.015) 40%,
-                transparent 70%);
-            pointer-events: none;
+        .hero-inner {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 48px; align-items: center;
+            position: relative; z-index: 1;
         }
-        .hero-inner { position: relative; z-index: 1; }
+        .hero-left { opacity: 0; animation: fadeUp 600ms ease 100ms forwards; }
         .hero-tag {
-            display: inline-flex; align-items: center; gap: 8px;
-            border: 1px solid rgba(255,255,255,0.22); border-radius: 100px;
-            padding: 7px 18px; font-size: 12px; font-weight: 600;
-            color: rgba(240,240,240,0.75); letter-spacing: 0.08em; text-transform: uppercase;
-            margin-bottom: 28px;
-            opacity: 0; animation: fadeUp 600ms ease 100ms forwards;
+            display: inline-flex; align-items: center; gap: 7px;
+            border: 1px solid rgba(255,255,255,0.16); border-radius: 100px;
+            padding: 6px 14px; font-size: 11px; font-weight: 600;
+            color: rgba(240,240,240,0.55); letter-spacing: 0.09em; text-transform: uppercase;
+            margin-bottom: 20px;
         }
-        .hero-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(240,240,240,0.6); }
+        .hero-tag-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(240,240,240,0.5); flex-shrink: 0; }
         .hero h1 {
             font-family: var(--display);
-            font-size: clamp(2.6rem, 1.4rem + 3.5vw, 4.8rem);
-            line-height: 1.0; letter-spacing: 0.02em;
+            font-size: clamp(2.8rem, 1.2rem + 4vw, 5.2rem);
+            line-height: 0.96; letter-spacing: 0.01em;
             color: var(--white); text-transform: uppercase;
-            margin-bottom: 24px;
-            opacity: 0; animation: fadeUp 600ms ease 200ms forwards;
+            margin-bottom: 20px;
         }
+        .hero h1 .dim { color: var(--grey); }
         .hero-sub {
-            font-size: clamp(16px, 1vw + 13px, 19px); color: var(--grey);
-            max-width: 520px; margin: 0 auto 40px; line-height: 1.65;
-            opacity: 0; animation: fadeUp 600ms ease 300ms forwards;
+            font-size: 16px; color: var(--grey);
+            max-width: 360px; margin-bottom: 32px; line-height: 1.65;
         }
         .hero-ctas {
-            display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 56px;
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        /* ── PRODUCT MOCKUP ── */
+        .hero-right {
+            opacity: 0; animation: fadeUp 600ms ease 250ms forwards;
+        }
+        .mockup {
+            background: var(--bg-1); border: 1px solid var(--border-md);
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 24px 64px rgba(0,0,0,0.6);
+        }
+        .mockup-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 18px; border-bottom: 1px solid var(--border);
+        }
+        .mockup-header-left { display: flex; align-items: center; gap: 8px; }
+        .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.6); flex-shrink: 0; }
+        .mockup-live-label { font-size: 12px; font-weight: 600; color: var(--white); }
+        .mockup-name { font-size: 12px; color: var(--grey); }
+        .mockup-time { font-size: 12px; color: var(--grey-dim); font-variant-numeric: tabular-nums; }
+        .mockup-body { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+
+        /* Score row */
+        .score-row { display: flex; align-items: center; gap: 14px; }
+        .score-circle {
+            width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--display); font-size: 1.5rem; color: var(--white);
+            background: rgba(255,255,255,0.04);
+        }
+        .score-info { flex: 1; }
+        .score-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); margin-bottom: 3px; }
+        .score-status { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 5px; }
+        .waveform { display: flex; align-items: center; gap: 2px; height: 16px; }
+        .waveform-bar { width: 3px; border-radius: 2px; background: var(--grey-dim); }
+
+        /* Seller quote */
+        .seller-row { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px 12px; }
+        .seller-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); margin-bottom: 5px; }
+        .seller-quote { font-size: 13px; color: var(--grey); line-height: 1.5; font-style: italic; }
+
+        /* Next best line */
+        .nbl-row {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border-md);
+            border-radius: 8px; padding: 12px 14px;
+        }
+        .nbl-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+        .nbl-plus { font-size: 12px; color: var(--grey); }
+        .nbl-text { font-size: 13px; color: var(--white); line-height: 1.55; }
+
+        /* ── STATS BAR ── */
+        .stats-bar {
+            margin-top: 64px; border-top: 1px solid var(--border);
+            display: grid; grid-template-columns: repeat(3, 1fr);
             opacity: 0; animation: fadeUp 600ms ease 400ms forwards;
         }
-        /* ── STATS STRIP ── */
-        .stats-strip {
-            display: flex; align-items: stretch; justify-content: center;
-            border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-            max-width: 560px; margin: 0 auto;
-            opacity: 0; animation: fadeUp 600ms ease 500ms forwards;
-        }
         .stat {
-            flex: 1; padding: 20px 24px; text-align: center;
+            padding: 24px 0; text-align: center;
             border-right: 1px solid var(--border);
         }
         .stat:last-child { border-right: none; }
         .stat-num {
-            font-family: var(--display); font-size: 2.4rem;
-            color: var(--white); line-height: 1; display: block; margin-bottom: 4px;
+            font-family: var(--display); font-size: 2.6rem;
+            color: var(--white); line-height: 1; display: block; margin-bottom: 5px;
         }
-        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey-dim); }
+        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--grey-dim); }
 
         /* ── SECTION BASICS ── */
         .section { padding: 80px 0; border-top: 1px solid var(--border); }
@@ -280,18 +321,23 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 860px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+            .hero { padding: 90px 0 0; }
+            .hero h1 { font-size: clamp(2.6rem, 8vw, 4rem); }
+            .hero-sub { max-width: 100%; }
             .cred-grid { grid-template-columns: 1fr; gap: 36px; }
             .steps { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
             .results-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
         }
         @media (max-width: 600px) {
-            .hero { padding: 88px 0 60px; }
-            .hero h1 { font-size: 3rem; }
-            .stats-strip { flex-direction: column; max-width: 240px; }
+            .hero { padding: 80px 0 0; }
+            .hero h1 { font-size: 2.6rem; }
+            .hero-ctas { flex-direction: column; gap: 10px; }
+            .hero-ctas .btn { width: 100%; justify-content: center; }
+            .stats-bar { grid-template-columns: 1fr; }
             .stat { border-right: none; border-bottom: 1px solid var(--border); }
             .stat:last-child { border-bottom: none; }
-            .hero-ctas { flex-direction: column; }
-            .hero-ctas .btn { width: 100%; }
+            .score-circle { width: 48px; height: 48px; font-size: 1.3rem; }
             .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
         }
     </style>
@@ -317,29 +363,81 @@
 <section class="hero">
     <div class="container">
         <div class="hero-inner">
-            <div class="hero-tag">
-                <span class="hero-tag-dot"></span>
-                For $500K–$10M Real Estate Operations
+
+            <!-- LEFT: copy -->
+            <div class="hero-left">
+                <div class="hero-tag">
+                    <span class="hero-tag-dot"></span>
+                    For $500K–$10M Real Estate Operations
+                </div>
+                <h1>Our AI Will Add<br>1–2 Deals Per Rep<br><span class="dim">In 14 Days</span></h1>
+                <p class="hero-sub">Osprex listens to every call, scores every lead, and tells your reps exactly what to say next. Done for you.</p>
+                <div class="hero-ctas">
+                    <a href="#apply" class="btn btn-white">Book a Call →</a>
+                    <a href="#vsl" class="btn btn-ghost">&#9654; Watch the Video</a>
+                </div>
             </div>
-            <h1>Our AI Will Add<br>1–2 Deals Per Rep<br>In 14 Days</h1>
-            <p class="hero-sub">Listens to every call, scores every lead, and tells your reps exactly what to say next. Done for you.</p>
-            <div class="hero-ctas">
-                <a href="#apply" class="btn btn-white btn-lg">Book a Call →</a>
-                <a href="#vsl" class="btn btn-ghost">Watch the Video</a>
+
+            <!-- RIGHT: product mockup -->
+            <div class="hero-right">
+                <div class="mockup">
+                    <div class="mockup-header">
+                        <div class="mockup-header-left">
+                            <span class="live-dot"></span>
+                            <span class="mockup-live-label">Live Call</span>
+                            <span class="mockup-name">&nbsp;· Marcus T.</span>
+                        </div>
+                        <span class="mockup-time">04:12</span>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="score-row">
+                            <div class="score-circle">92</div>
+                            <div class="score-info">
+                                <div class="score-label">Lead Score</div>
+                                <div class="score-status">Hot — close-ready</div>
+                                <div class="waveform">
+                                    <div class="waveform-bar" style="height:6px"></div>
+                                    <div class="waveform-bar" style="height:10px"></div>
+                                    <div class="waveform-bar" style="height:14px"></div>
+                                    <div class="waveform-bar" style="height:8px"></div>
+                                    <div class="waveform-bar" style="height:12px"></div>
+                                    <div class="waveform-bar" style="height:5px"></div>
+                                    <div class="waveform-bar" style="height:10px"></div>
+                                    <div class="waveform-bar" style="height:14px"></div>
+                                    <div class="waveform-bar" style="height:7px"></div>
+                                    <div class="waveform-bar" style="height:11px"></div>
+                                    <div class="waveform-bar" style="height:6px"></div>
+                                    <div class="waveform-bar" style="height:9px"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seller-row">
+                            <div class="seller-tag">Seller</div>
+                            <div class="seller-quote">"I'd want to move, but the timing's just tricky right now..."</div>
+                        </div>
+                        <div class="nbl-row">
+                            <div class="nbl-tag"><span class="nbl-plus">+</span>&nbsp;Next Best Line</div>
+                            <div class="nbl-text">"Totally fair. What if we locked the price now and you picked the close date?"</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stats-strip">
-                <div class="stat">
-                    <span class="stat-num">26.65%</span>
-                    <span class="stat-label">Avg Client Close Rate</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-num">100+</span>
-                    <span class="stat-label">Investors Helped</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-num">5,000+</span>
-                    <span class="stat-label">Calls Analyzed</span>
-                </div>
+
+        </div>
+
+        <!-- STATS BAR -->
+        <div class="stats-bar">
+            <div class="stat">
+                <span class="stat-num">26.65%</span>
+                <span class="stat-label">Avg Client Close Rate</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">100+</span>
+                <span class="stat-label">Investors Helped</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">5,000+</span>
+                <span class="stat-label">Calls Analyzed</span>
             </div>
         </div>
     </div>
