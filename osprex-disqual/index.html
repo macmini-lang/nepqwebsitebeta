@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not a Fit Right Now | Osprex</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg:         #0A0A0A;
+            --bg-1:       #111111;
+            --bg-2:       #161616;
+            --border:     rgba(255,255,255,0.08);
+            --border-md:  rgba(255,255,255,0.13);
+            --white:      #F0F0F0;
+            --grey:       #8A8A8A;
+            --grey-dim:   #555555;
+            --font:       'DM Sans', -apple-system, sans-serif;
+            --display:    'Bebas Neue', sans-serif;
+        }
+        html { -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font); background: var(--bg); color: var(--grey); font-size: 15px; line-height: 1.6; min-height: 100vh; padding-bottom: 80px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── NAV ── */
+        .nav { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; }
+        .nav-logo svg { width: 26px; height: 26px; }
+        .nav-logo-text { font-family: var(--display); font-size: 18px; letter-spacing: 0.06em; color: var(--white); }
+
+        /* ── LAYOUT ── */
+        .page { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── HERO ── */
+        .hero { text-align: center; padding: 56px 0 40px; }
+        .hero h1 {
+            font-family: var(--display); font-size: clamp(2rem, 1.5rem + 2vw, 2.8rem);
+            color: var(--white); text-transform: uppercase; letter-spacing: 0.02em;
+            line-height: 1.05; margin-bottom: 14px;
+        }
+        .hero-sub { font-size: 15px; color: var(--grey); max-width: 400px; margin: 0 auto; line-height: 1.6; }
+
+        /* ── DIVIDER ── */
+        .divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+        /* ── SECTION ── */
+        .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--grey-dim); margin-bottom: 8px; }
+        .section-h { font-family: var(--display); font-size: 1.6rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--white); line-height: 1.1; margin-bottom: 8px; }
+        .section-sub { font-size: 14px; color: var(--grey); margin-bottom: 20px; }
+
+        /* ── CTA CARDS ── */
+        .cta-list { display: flex; flex-direction: column; gap: 10px; }
+        .cta-card {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--bg-1); border: 1px solid var(--border);
+            border-radius: 12px; padding: 18px 20px;
+            transition: border-color 200ms, box-shadow 200ms;
+            cursor: pointer;
+        }
+        .cta-card:hover { border-color: var(--border-md); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+        .cta-card-primary {
+            background: var(--white); border-color: var(--white);
+        }
+        .cta-card-primary:hover { background: #fff; border-color: #fff; box-shadow: 0 4px 24px rgba(240,240,240,0.1); }
+        .cta-card-left { display: flex; flex-direction: column; gap: 3px; }
+        .cta-card-label { font-size: 15px; font-weight: 700; color: var(--white); }
+        .cta-card-primary .cta-card-label { color: #000; }
+        .cta-card-desc { font-size: 13px; color: var(--grey); }
+        .cta-card-primary .cta-card-desc { color: rgba(0,0,0,0.55); }
+        .cta-card-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: 16px; }
+        .cta-card-price { font-size: 17px; font-weight: 700; color: var(--white); }
+        .cta-card-primary .cta-card-price { color: #000; }
+        .cta-card-arrow { opacity: 0.5; }
+        .cta-card-primary .cta-card-arrow { opacity: 0.6; }
+
+        /* ── FOOTER NOTE ── */
+        .footer-note { text-align: center; font-size: 12px; color: var(--grey-dim); margin-top: 28px; }
+        .footer-note a { color: var(--grey); text-decoration: underline; text-underline-offset: 3px; }
+        .footer-note a:hover { color: var(--white); }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90">
+            <circle cx="45" cy="45" r="32" fill="none" stroke="#e8e8e8" stroke-width="6"/>
+            <polygon points="45,21 50,37 45,31 40,37" fill="#e8e8e8"/>
+            <line x1="45" y1="31" x2="45" y2="78" stroke="#e8e8e8" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-logo-text">OSPREX</span>
+    </div>
+</nav>
+
+<div class="page">
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>We're Not the Right Fit Right Now</h1>
+        <p class="hero-sub">Our done-for-you program is built for operators at a specific stage. You're not there yet — but that doesn't mean you can't get there.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CTA SECTION -->
+    <div>
+        <p class="section-label">Here's How to Keep Moving Forward</p>
+        <h2 class="section-h">Resources to Get You There</h2>
+        <p class="section-sub">Pick the resource that fits where you are right now.</p>
+
+        <div class="cta-list">
+
+            <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="cta-card cta-card-primary">
+                <div class="cta-card-left">
+                    <span class="cta-card-label">Attend Our Next Live Event</span>
+                    <span class="cta-card-desc">Learn the full NEPQ sales process live with Jon Lallande</span>
+                </div>
+                <div class="cta-card-right">
+                    <span class="cta-card-price">Free</span>
+                    <svg class="cta-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </a>
+
+            <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="cta-card">
+                <div class="cta-card-left">
+                    <span class="cta-card-label">Book a Call with the WSA Team</span>
+                    <span class="cta-card-desc">Get the full NEPQ sales training built for wholesalers</span>
+                </div>
+                <div class="cta-card-right">
+                    <span class="cta-card-price">Learn More</span>
+                    <svg class="cta-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A8A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </a>
+
+            <a href="https://www.skool.com/wholesale-sales-academy-3851/about?ref=21a049d1dc204702a95d226d2ee15c1d" target="_blank" class="cta-card">
+                <div class="cta-card-left">
+                    <span class="cta-card-label">Master Sales (WSA Community)</span>
+                    <span class="cta-card-desc">Self-study NEPQ training to close more deals from your existing leads</span>
+                </div>
+                <div class="cta-card-right">
+                    <span class="cta-card-price">$197</span>
+                    <svg class="cta-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A8A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </a>
+
+        </div>
+
+        <p class="footer-note">
+            Questions? <a href="mailto:hello@osprex.ai">hello@osprex.ai</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
