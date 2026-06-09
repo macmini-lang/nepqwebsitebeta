@@ -182,7 +182,12 @@
             border-color: var(--border-md); transform: translateY(-3px);
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
-        .result-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .result-card-img-wrap {
+            background: var(--bg-2); border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            min-height: 200px; padding: 16px;
+        }
+        .result-card-img-wrap img { max-height: 240px; width: auto; max-width: 100%; object-fit: contain; display: block; }
         .result-card-body { padding: 20px; }
         .result-num {
             font-family: var(--display); font-size: 2.2rem;
@@ -359,7 +364,7 @@
         </div>
         <div class="results-grid">
             <div class="result-card reveal">
-                <img src="../assets/osprex/matt-results.png" alt="Max results">
+                <div class="result-card-img-wrap"><img src="../assets/osprex/matt-results.png" alt="Max results"></div>
                 <div class="result-card-body">
                     <div class="result-num">12.5% → 25%</div>
                     <div class="result-name">Max</div>
@@ -368,7 +373,7 @@
                 </div>
             </div>
             <div class="result-card reveal reveal-d1">
-                <img src="../assets/osprex/justin-results.jpg" alt="Justin results">
+                <div class="result-card-img-wrap"><img src="../assets/osprex/justin-results.jpg" alt="Justin results"></div>
                 <div class="result-card-body">
                     <div class="result-num">26 → 8 Leads</div>
                     <div class="result-name">Justin</div>
@@ -377,7 +382,7 @@
                 </div>
             </div>
             <div class="result-card reveal">
-                <img src="../assets/osprex/dylan-results.jpg" alt="Dylan results">
+                <div class="result-card-img-wrap"><img src="../assets/osprex/dylan-results.jpg" alt="Dylan results"></div>
                 <div class="result-card-body">
                     <div class="result-num">30 → 5 Leads</div>
                     <div class="result-name">Dylan</div>
@@ -386,7 +391,7 @@
                 </div>
             </div>
             <div class="result-card reveal reveal-d1">
-                <img src="../assets/osprex/jb-results.jpg" alt="JB results">
+                <div class="result-card-img-wrap"><img src="../assets/osprex/jb-results.jpg" alt="JB results"></div>
                 <div class="result-card-body">
                     <div class="result-num">27 → 12.5 Leads</div>
                     <div class="result-name">JB</div>
