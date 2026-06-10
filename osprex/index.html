@@ -144,34 +144,52 @@
         .mockup-time { font-size: 12px; color: var(--grey-dim); font-variant-numeric: tabular-nums; }
         .mockup-body { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
 
-        /* Score row */
-        .score-row { display: flex; align-items: center; gap: 14px; }
-        .score-circle {
-            width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
-            border: 2px solid rgba(255,255,255,0.15);
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--display); font-size: 1.5rem; color: var(--white);
-            background: rgba(255,255,255,0.04);
-        }
-        .score-info { flex: 1; }
-        .score-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); margin-bottom: 3px; }
-        .score-status { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 5px; }
-        .waveform { display: flex; align-items: center; gap: 2px; height: 16px; }
-        .waveform-bar { width: 3px; border-radius: 2px; background: var(--grey-dim); }
+        /* ── MANAGER DASHBOARD MOCKUP ── */
+        .mockup-title { font-size: 13px; font-weight: 600; color: var(--white); }
+        .mockup-live-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #22C55E; letter-spacing: 0.05em; }
 
-        /* Seller quote */
-        .seller-row { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px 12px; }
-        .seller-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); margin-bottom: 5px; }
-        .seller-quote { font-size: 13px; color: var(--grey); line-height: 1.5; font-style: italic; }
-
-        /* Next best line */
-        .nbl-row {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border-md);
-            border-radius: 8px; padding: 12px 14px;
+        /* Alert row */
+        .mockup-alert {
+            display: flex; align-items: center; justify-content: space-between;
+            margin: 10px 14px; padding: 9px 12px;
+            background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
+            border-radius: 7px;
         }
-        .nbl-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
-        .nbl-plus { font-size: 12px; color: var(--grey); }
-        .nbl-text { font-size: 13px; color: var(--white); line-height: 1.55; }
+        .mockup-alert-left { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #F59E0B; font-weight: 500; }
+        .mockup-alert-view { font-size: 11px; font-weight: 700; color: #F59E0B; opacity: 0.8; white-space: nowrap; }
+
+        /* Opportunities section */
+        .mockup-section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 14px 6px; border-top: 1px solid var(--border);
+        }
+        .mockup-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); }
+        .mockup-filter { font-size: 11px; color: var(--grey-dim); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; }
+
+        /* Lead rows */
+        .lead-row {
+            display: flex; align-items: center;
+            padding: 9px 14px; gap: 10px; border-top: 1px solid var(--border);
+        }
+        .lead-rank { font-size: 11px; font-weight: 700; color: var(--grey-dim); width: 18px; flex-shrink: 0; }
+        .lead-info { flex: 1; min-width: 0; }
+        .lead-name { font-size: 13px; font-weight: 600; color: var(--white); display: flex; align-items: center; gap: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .lead-rep { font-size: 11px; color: var(--grey-dim); margin-top: 1px; }
+        .hot-badge { font-size: 9px; font-weight: 800; color: #ef4444; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.25); border-radius: 3px; padding: 1px 4px; letter-spacing: 0.05em; flex-shrink: 0; }
+        .lead-score { font-size: 14px; font-weight: 700; flex-shrink: 0; }
+        .score-green { color: #22C55E; }
+        .score-amber { color: #F59E0B; }
+
+        /* Leaders bar */
+        .mockup-leaders {
+            display: flex; align-items: center; gap: 14px;
+            padding: 9px 14px; border-top: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+        }
+        .leaders-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey-dim); flex-shrink: 0; }
+        .leader-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--grey); }
+        .leader-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+        .leader-score { font-weight: 700; color: var(--white); }
 
         /* ── STATS BAR ── */
         .stats-bar {
@@ -395,46 +413,69 @@
                 </div>
             </div>
 
-            <!-- RIGHT: product mockup -->
+            <!-- RIGHT: Manager Dashboard mockup -->
             <div class="hero-right">
                 <div class="mockup">
+                    <!-- Header -->
                     <div class="mockup-header">
-                        <div class="mockup-header-left">
+                        <span class="mockup-title">Manager Dashboard</span>
+                        <div class="mockup-live-badge">
                             <span class="live-dot"></span>
-                            <span class="mockup-live-label">Live Call</span>
-                            <span class="mockup-name">&nbsp;· Marcus T.</span>
+                            LIVE
                         </div>
-                        <span class="mockup-time">04:12</span>
                     </div>
-                    <div class="mockup-body">
-                        <div class="score-row">
-                            <div class="score-circle">92</div>
-                            <div class="score-info">
-                                <div class="score-label">Lead Score</div>
-                                <div class="score-status">Hot — close-ready</div>
-                                <div class="waveform">
-                                    <div class="waveform-bar" style="height:6px"></div>
-                                    <div class="waveform-bar" style="height:10px"></div>
-                                    <div class="waveform-bar" style="height:14px"></div>
-                                    <div class="waveform-bar" style="height:8px"></div>
-                                    <div class="waveform-bar" style="height:12px"></div>
-                                    <div class="waveform-bar" style="height:5px"></div>
-                                    <div class="waveform-bar" style="height:10px"></div>
-                                    <div class="waveform-bar" style="height:14px"></div>
-                                    <div class="waveform-bar" style="height:7px"></div>
-                                    <div class="waveform-bar" style="height:11px"></div>
-                                    <div class="waveform-bar" style="height:6px"></div>
-                                    <div class="waveform-bar" style="height:9px"></div>
-                                </div>
-                            </div>
+
+                    <!-- Alert -->
+                    <div class="mockup-alert">
+                        <div class="mockup-alert-left">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            9 calls flagged for manager attention
                         </div>
-                        <div class="seller-row">
-                            <div class="seller-tag">Seller</div>
-                            <div class="seller-quote">"I'd want to move, but the timing's just tricky right now..."</div>
+                        <span class="mockup-alert-view">View ↑</span>
+                    </div>
+
+                    <!-- Opportunities header -->
+                    <div class="mockup-section-header">
+                        <span class="mockup-section-label">Top Hottest Opportunities</span>
+                        <span class="mockup-filter">All Reps ↓</span>
+                    </div>
+
+                    <!-- Lead rows -->
+                    <div class="lead-row">
+                        <span class="lead-rank">#1</span>
+                        <div class="lead-info">
+                            <div class="lead-name">Melanie Fiume Dick <span class="hot-badge">HOT</span></div>
+                            <div class="lead-rep">David Markette</div>
                         </div>
-                        <div class="nbl-row">
-                            <div class="nbl-tag"><span class="nbl-plus">+</span>&nbsp;Next Best Line</div>
-                            <div class="nbl-text">"Totally fair. What if we locked the price now and you picked the close date?"</div>
+                        <span class="lead-score score-green">8/10</span>
+                    </div>
+                    <div class="lead-row">
+                        <span class="lead-rank">#2</span>
+                        <div class="lead-info">
+                            <div class="lead-name">Pamela Mix-Allen <span class="hot-badge">HOT</span></div>
+                            <div class="lead-rep">Henry Johnston</div>
+                        </div>
+                        <span class="lead-score score-amber">7/10</span>
+                    </div>
+                    <div class="lead-row">
+                        <span class="lead-rank">#3</span>
+                        <div class="lead-info">
+                            <div class="lead-name">Kevin Smith <span class="hot-badge">HOT</span></div>
+                            <div class="lead-rep">David Markette</div>
+                        </div>
+                        <span class="lead-score score-amber">7/10</span>
+                    </div>
+
+                    <!-- Leaders -->
+                    <div class="mockup-leaders">
+                        <span class="leaders-label">Leaders</span>
+                        <div class="leader-item">
+                            <span class="leader-dot" style="background:#22C55E;"></span>
+                            David Markette <span class="leader-score">4.7</span>
+                        </div>
+                        <div class="leader-item">
+                            <span class="leader-dot" style="background:#F59E0B;"></span>
+                            Henry Johnston <span class="leader-score">4.1</span>
                         </div>
                     </div>
                 </div>
