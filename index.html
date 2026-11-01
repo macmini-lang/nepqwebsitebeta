@@ -32,9 +32,9 @@
             --text-tertiary: #666666;
 
             /* Accent */
-            --accent: #8580c5;
-            --accent-hover: #9590d0;
-            --accent-muted: rgba(133,128,197,0.15);
+            --accent: #E0242C;
+            --accent-hover: #c41d24;
+            --accent-muted: rgba(224,36,44,0.15);
 
             /* Spacing — 8px grid */
             --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
@@ -67,7 +67,7 @@
         }
         .btn-primary:hover {
             background: var(--accent-hover); transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(133,128,197,0.25);
+            box-shadow: 0 4px 16px rgba(224,36,44,0.25);
         }
         .btn-secondary {
             background: transparent; color: var(--text-primary);
@@ -128,7 +128,7 @@
             content: ''; position: absolute; inset: 0;
             background: radial-gradient(
                 600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(133,128,197,0.07), transparent 40%
+                rgba(224,36,44,0.07), transparent 40%
             );
             opacity: 0; transition: opacity 500ms ease; pointer-events: none; z-index: 1;
         }
@@ -143,13 +143,13 @@
         .hero::before {
             content: ''; position: absolute; top: -200px; right: -100px;
             width: 900px; height: 700px;
-            background: radial-gradient(ellipse at 50% 40%, rgba(133,128,197,0.08) 0%, rgba(133,128,197,0.03) 40%, transparent 70%);
+            background: radial-gradient(ellipse at 50% 40%, rgba(224,36,44,0.08) 0%, rgba(224,36,44,0.03) 40%, transparent 70%);
             pointer-events: none;
         }
         .hero::after {
             content: ''; position: absolute; bottom: -100px; left: -200px;
             width: 600px; height: 400px;
-            background: radial-gradient(ellipse, rgba(133,128,197,0.04) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(224,36,44,0.04) 0%, transparent 70%);
             pointer-events: none;
         }
         .hero-grid {
@@ -164,7 +164,7 @@
         }
         .hero h1 {
             font-size: clamp(2.25rem, 1.5rem + 3.2vw, 3.5rem);
-            font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+            font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance;
             margin-bottom: var(--space-5);
             opacity: 0; animation: fadeUp 600ms ease-out 200ms forwards;
         }
@@ -190,8 +190,7 @@
             box-shadow:
                 0 0 0 1px rgba(255,255,255,0.04),
                 0 4px 8px rgba(0,0,0,0.2),
-                0 16px 48px rgba(0,0,0,0.5),
-                0 0 80px rgba(133,128,197,0.08);
+                0 16px 48px rgba(0,0,0,0.5);
             position: relative;
         }
         .video-wrap::after {
@@ -227,7 +226,7 @@
         }
         .why-visual::before {
             content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, rgba(133,128,197,0.06) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 50% 50%, rgba(224,36,44,0.06) 0%, transparent 70%);
             pointer-events: none;
         }
         .convo-animation { width: 100%; max-width: 340px; position: relative; z-index: 1; }
@@ -240,7 +239,7 @@
         }
         .convo-bubble.visible { opacity: 1; transform: translateY(0); }
         .convo-bubble--seller { margin-left: 0; margin-right: var(--space-7); border-bottom-left-radius: 4px; }
-        .convo-bubble--you { margin-right: 0; margin-left: var(--space-7); border-bottom-right-radius: 4px; border-color: rgba(133,128,197,0.2); }
+        .convo-bubble--you { margin-right: 0; margin-left: var(--space-7); border-bottom-right-radius: 4px; border-color: rgba(224,36,44,0.2); }
         .convo-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
         .convo-label--seller { color: var(--text-tertiary); }
         .convo-label--you { color: var(--accent); }
@@ -250,14 +249,14 @@
         .about::before {
             content: ''; position: absolute; top: 50%; left: -100px; transform: translateY(-50%);
             width: 500px; height: 500px;
-            background: radial-gradient(ellipse, rgba(133,128,197,0.05) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(224,36,44,0.05) 0%, transparent 70%);
             pointer-events: none;
         }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: start; position: relative; z-index: 1; }
         .about-image {
             border-radius: 16px; overflow: hidden;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 8px 40px rgba(0,0,0,0.4), 0 0 60px rgba(133,128,197,0.06);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 8px 40px rgba(0,0,0,0.4), 0 0 60px rgba(224,36,44,0.06);
             position: relative;
         }
         .about-image::after {
@@ -287,7 +286,7 @@
         .how::before {
             content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
             width: 800px; height: 500px;
-            background: radial-gradient(ellipse, rgba(133,128,197,0.04) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(224,36,44,0.04) 0%, transparent 70%);
             pointer-events: none;
         }
         .how-header { text-align: center; margin-bottom: var(--space-8); max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -309,7 +308,7 @@
             content: ''; position: absolute; inset: 0;
             background: radial-gradient(
                 600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(133,128,197,0.06), transparent 40%
+                rgba(224,36,44,0.06), transparent 40%
             );
             opacity: 0; transition: opacity 500ms ease; pointer-events: none;
         }
@@ -321,14 +320,14 @@
         .step:nth-child(2) { transition-delay: 120ms; }
         .step:nth-child(3) { transition-delay: 240ms; }
         .step:hover {
-            border-color: rgba(133,128,197,0.2); transform: translateY(-4px);
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.3), 0 0 40px rgba(133,128,197,0.06);
+            border-color: rgba(224,36,44,0.2); transform: translateY(-4px);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.3), 0 0 40px rgba(224,36,44,0.06);
         }
         .step-num {
             display: inline-flex; align-items: center; justify-content: center;
             width: 44px; height: 44px; border-radius: 12px;
-            background: linear-gradient(135deg, rgba(133,128,197,0.15), rgba(133,128,197,0.05));
-            border: 1px solid rgba(133,128,197,0.2);
+            background: linear-gradient(135deg, rgba(224,36,44,0.15), rgba(224,36,44,0.05));
+            border: 1px solid rgba(224,36,44,0.2);
             font-size: 16px; font-weight: 700; color: var(--accent);
             margin-bottom: var(--space-5);
         }
@@ -345,7 +344,7 @@
         }
         .cta-band::before {
             content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(133,128,197,0.04) 0%, transparent 70%);
+            background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(224,36,44,0.04) 0%, transparent 70%);
             pointer-events: none;
         }
         .cta-band h2 { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem); font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-3); text-align: center; }
@@ -373,13 +372,13 @@
             content: ''; position: absolute; inset: 0;
             background: radial-gradient(
                 600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(133,128,197,0.06), transparent 40%
+                rgba(224,36,44,0.06), transparent 40%
             );
             opacity: 0; transition: opacity 500ms ease; pointer-events: none;
         }
         .t-item:hover::before { opacity: 1; }
         .t-item:hover {
-            border-color: rgba(133,128,197,0.15); transform: translateY(-2px);
+            border-color: rgba(224,36,44,0.15); transform: translateY(-2px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         }
         .t-caption {
@@ -422,7 +421,7 @@
         .final-cta::before {
             content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
             width: 800px; height: 500px;
-            background: radial-gradient(ellipse, rgba(133,128,197,0.07) 0%, rgba(133,128,197,0.02) 40%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(224,36,44,0.07) 0%, rgba(224,36,44,0.02) 40%, transparent 70%);
             pointer-events: none;
         }
         .final-cta h2 { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem); font-weight: 700; margin-bottom: var(--space-4); letter-spacing: -0.02em; }
@@ -486,7 +485,7 @@
             background-repeat: no-repeat; background-position: center; background-size: 24px;
             pointer-events: none; transition: background-color 200ms;
         }
-        .yt-card .yt-placeholder:hover::after { background-color: rgba(133,128,197,0.9); }
+        .yt-card .yt-placeholder:hover::after { background-color: rgba(224,36,44,0.9); }
         .yt-extra { display: none; }
 
         /* ── MARQUEE LOGOS ── */
@@ -671,7 +670,7 @@
                 <div class="hero-content">
                     <img src="assets/logo.png" alt="WSA" class="hero-logo">
                     <p class="overline">For Wholesalers &amp; Acquisitions Teams</p>
-                    <h1 class="gradient-text">Close more deals. Build a team that sells without you.</h1>
+                    <h1 class="gradient-text">Double your close rate by mastering how sellers make decisions.</h1>
                     <p class="hero-sub">Sales training built to work with human behavior instead of against it. Learn a sales process designed to get sellers to trust you, open up to you, and close themselves.</p>
                     <div class="hero-ctas">
                         <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
@@ -681,7 +680,7 @@
                 <div class="hero-media">
                     <div class="hero-spacer"></div>
                     <div class="video-wrap">
-                        <wistia-player media-id="kgvqb4tt25" aspect="1.7777777777777777"></wistia-player>
+                        <wistia-player media-id="5y68i5hudf" aspect="1.7777777777777777"></wistia-player>
                     </div>
                 </div>
             </div>
@@ -695,15 +694,15 @@
                 <div class="why-content reveal">
                     <p class="overline">Why This Approach</p>
 
-                    <h2>Every wholesaler sounds the exact same. That's why sellers can't tell you apart.</h2>
-                    <p>Build rapport, get the condition, timeline, motivation, price.
-                    Every other wholesaler who calls that seller asks those same four things.</p>
+                    <h2>You're losing deals because your sales process breaks down in three places.</h2>
+                    <p>Sellers don't feel the impact of their problem or urgency to solve it.</p>
 
-                    <p>So the seller picks whoever offers the most money, and you're stuck competing on price instead of trust.
-                    Smaller assignment fees, lost contracts, and deals going to your competition.</p>
+                    <p>Conversations get stuck on Zillow and comps before you establish how your offer solves their problem.</p>
 
-                    <p>The reason that keeps happening is because you don't actually have a full understanding of how your own process works.
-                    And the way we solve that is by giving you a systematic approach that actually works with human behaviors, so you can close deals that your competition is losing.</p>
+                    <p>And the same objections keep costing you contracts because your team has no systematic way to prevent or overcome them.</p>
+
+                    <p>We help established wholesalers and flippers fix all three with a repeatable sales process built around how sellers make decisions.
+                    So you can double your close rate and create more predictable revenue from the leads you already have.</p>
                 </div>
                 <div class="why-visual reveal">
                     <div class="convo-animation" id="convoAnim">
