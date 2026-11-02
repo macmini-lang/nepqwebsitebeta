@@ -163,7 +163,7 @@
             opacity: 0; animation: fadeUp 600ms ease-out 100ms forwards;
         }
         .hero h1 {
-            font-size: clamp(2.25rem, 1.5rem + 3.2vw, 3.5rem);
+            font-size: clamp(2.25rem, 3.55vw, 2.75rem);
             font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance;
             margin-bottom: var(--space-5);
             opacity: 0; animation: fadeUp 600ms ease-out 200ms forwards;
@@ -244,6 +244,34 @@
         .convo-label--seller { color: var(--text-tertiary); }
         .convo-label--you { color: var(--accent); }
 
+        /* Three breaks visual */
+        .breaks { width: 100%; max-width: 380px; position: relative; z-index: 1; }
+        .breaks-head { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-tertiary); margin-bottom: var(--space-5); }
+        .breaks-live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(224,36,44,0.6); animation: livePulse 1.8s ease-out infinite; }
+        @keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(224,36,44,0.55); } 100% { box-shadow: 0 0 0 9px rgba(224,36,44,0); } }
+        .breaks-track { position: relative; display: grid; gap: var(--space-4); }
+        .breaks-line { position: absolute; left: 19px; top: 20px; bottom: 20px; width: 2px; background: var(--border-default); border-radius: 2px; overflow: hidden; }
+        .breaks-line span { position: absolute; inset: 0; background: linear-gradient(180deg, var(--accent), rgba(224,36,44,0.35)); transform: scaleY(0); transform-origin: top; transition: transform 2400ms cubic-bezier(.4,0,.2,1); }
+        .breaks.go .breaks-line span { transform: scaleY(1); }
+        .brk { display: grid; grid-template-columns: 40px 1fr; gap: var(--space-4); align-items: start; position: relative; }
+        .brk-node { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--bg-elevated); border: 1px solid var(--border-default); color: var(--text-tertiary); position: relative; z-index: 1; transition: background 400ms, border-color 400ms, color 400ms, box-shadow 400ms; }
+        .brk-node svg { width: 18px; height: 18px; }
+        .brk.hit .brk-node { background: rgba(224,36,44,0.12); border-color: rgba(224,36,44,0.45); color: var(--accent); box-shadow: 0 0 24px rgba(224,36,44,0.25); animation: brkShake 380ms ease; }
+        @keyframes brkShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-3px) rotate(-4deg); } 50% { transform: translateX(3px) rotate(3deg); } 75% { transform: translateX(-2px); } }
+        .brk-body { background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px; opacity: 0.35; transform: translateX(6px); transition: opacity 500ms ease, transform 500ms ease, border-color 500ms ease; }
+        .brk.hit .brk-body { opacity: 1; transform: none; border-color: var(--border-default); }
+        .brk-tag { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+        .brk-body strong { display: block; font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.3; }
+        .brk-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.45; margin: 4px 0 8px; }
+        .brk-out { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--text-tertiary); padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); position: relative; }
+        .brk-out::after { content: ''; position: absolute; left: 6px; right: 6px; top: 50%; height: 1.5px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 450ms ease 350ms; }
+        .brk.hit .brk-out::after { transform: scaleX(1); }
+        .breaks-foot { margin-top: var(--space-5); padding: 12px 14px 12px 16px; border-radius: 12px; border: 1px solid rgba(224,36,44,0.35); background: linear-gradient(90deg, rgba(224,36,44,0.14), rgba(224,36,44,0.02)); color: var(--text-primary); font-size: 14px; font-weight: 600; line-height: 1.4; opacity: 0; transform: translateY(8px); transition: opacity 600ms ease, transform 600ms ease; }
+        .breaks.done .breaks-foot { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .breaks-line span, .brk-body, .brk-out::after, .breaks-foot, .brk-node { transition: none !important; animation: none !important; }
+        }
+
         /* ── ABOUT ── */
         .about { padding: var(--space-9) 0; background: var(--bg-base); position: relative; }
         .about::before {
@@ -289,7 +317,7 @@
             background: radial-gradient(ellipse, rgba(224,36,44,0.04) 0%, transparent 70%);
             pointer-events: none;
         }
-        .how-header { text-align: center; margin-bottom: var(--space-8); max-width: 600px; margin-left: auto; margin-right: auto; }
+        .how-header { text-align: center; margin-bottom: var(--space-8); max-width: 900px; margin-left: auto; margin-right: auto; }
         .how-header h2 {
             font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
             font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
@@ -332,7 +360,8 @@
             margin-bottom: var(--space-5);
         }
         .step-icon { width: 36px; height: 36px; color: var(--accent); margin: 0 auto var(--space-4); display: block; }
-        .step h3 { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2); line-height: 1.3; }
+        .step h3 { font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2); line-height: 1.3; letter-spacing: -0.01em; }
+        @media (min-width: 1200px) { .step h3 { white-space: nowrap; } .step { padding: var(--space-6) var(--space-5); } }
         .step p { font-size: 15px; color: var(--text-secondary); line-height: 1.55; }
         .step { text-align: center; }
         .step-num { margin: 0 auto var(--space-5); }
@@ -506,6 +535,8 @@
         .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        .hero h1 .h1-br { display: inline; }
+        @media (max-width: 1150px) { .hero h1 .h1-br { display: none; } }
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
@@ -557,7 +588,7 @@
             /* Why */
             .why-content h2 { font-size: 1.2rem; }
             .why-content p { font-size: 14px; margin-bottom: var(--space-3); }
-            .convo-bubble { font-size: 13px; padding: 10px 14px; margin-bottom: var(--space-2); }
+            .why-visual { padding: var(--space-5); min-height: 0; }
             .convo-label { font-size: 10px; }
             .why-visual { padding: var(--space-4); min-height: auto; }
 
@@ -646,8 +677,8 @@
                 <li><a href="#results">Results</a></li>
             </ul>
             <div class="nav-ctas">
-                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary btn-sm">Book a Call to Learn More</a>
-                <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="btn btn-primary btn-sm">Attend Our Next Event</a>
+                <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary btn-sm">Check Us Out on YouTube</a>
+                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary btn-sm">Book a Call to Learn More</a>
             </div>
             <button class="mobile-toggle" onclick="toggleMobileMenu()">&#9776;</button>
         </div>
@@ -659,8 +690,8 @@
         <a href="#about" onclick="toggleMobileMenu()">Who is Jon</a>
         <a href="#how" onclick="toggleMobileMenu()">How It Works</a>
         <a href="#results" onclick="toggleMobileMenu()">Results</a>
-        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary" onclick="toggleMobileMenu()">Book a Call to Learn More</a>
-        <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="btn btn-primary" onclick="toggleMobileMenu()">Attend Our Next Event</a>
+        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary" onclick="toggleMobileMenu()">Book a Call to Learn More</a>
+        <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary" onclick="toggleMobileMenu()">Check Us Out on YouTube</a>
     </div>
 
     <!-- HERO -->
@@ -670,11 +701,11 @@
                 <div class="hero-content">
                     <img src="assets/logo.png" alt="WSA" class="hero-logo">
                     <p class="overline">For Wholesalers &amp; Acquisitions Teams</p>
-                    <h1 class="gradient-text">Double your close rate by mastering how sellers make decisions.</h1>
+                    <h1 class="gradient-text">Double your close rate <br class="h1-br">by mastering how sellers <br class="h1-br">make decisions.</h1>
                     <p class="hero-sub">Sales training built to work with human behavior instead of against it. Learn a sales process designed to get sellers to trust you, open up to you, and close themselves.</p>
                     <div class="hero-ctas">
-                        <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
-                        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+                        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                        <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
                     </div>
                 </div>
                 <div class="hero-media">
@@ -705,23 +736,39 @@
                     So you can double your close rate and create more predictable revenue from the leads you already have.</p>
                 </div>
                 <div class="why-visual reveal">
-                    <div class="convo-animation" id="convoAnim">
-                        <div class="convo-bubble convo-bubble--seller">
-                            <div class="convo-label convo-label--seller">Seller</div>
-                            "Look, I've already talked to like five other people. Can you just give me a number?"
+                    <div class="breaks" id="breaksAnim">
+                        <div class="breaks-head"><span class="breaks-live"></span>Where a seller call breaks</div>
+                        <div class="breaks-track">
+                            <div class="breaks-line"><span></span></div>
+                            <div class="brk">
+                                <div class="brk-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 9 10h5l-4 12"/></svg></div>
+                                <div class="brk-body">
+                                    <span class="brk-tag">Break 01</span>
+                                    <strong>No urgency</strong>
+                                    <p>The seller never feels what waiting is costing them.</p>
+                                    <span class="brk-out">Deal stalls</span>
+                                </div>
+                            </div>
+                            <div class="brk">
+                                <div class="brk-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 9 10h5l-4 12"/></svg></div>
+                                <div class="brk-body">
+                                    <span class="brk-tag">Break 02</span>
+                                    <strong>Stuck on Zillow</strong>
+                                    <p>Price comes up before they know how you solve their problem.</p>
+                                    <span class="brk-out">Lowball fight</span>
+                                </div>
+                            </div>
+                            <div class="brk">
+                                <div class="brk-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 9 10h5l-4 12"/></svg></div>
+                                <div class="brk-body">
+                                    <span class="brk-tag">Break 03</span>
+                                    <strong>Same objections</strong>
+                                    <p>Your team hears them every week with no answer that works.</p>
+                                    <span class="brk-out">Contract lost</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="convo-bubble convo-bubble--you">
-                            <div class="convo-label convo-label--you">You (needs-based)</div>
-                            "I totally get it. And I don't want to waste your time. Can I ask, what's going on that made you want to sell in the first place?"
-                        </div>
-                        <div class="convo-bubble convo-bubble--seller">
-                            <div class="convo-label convo-label--seller">Seller</div>
-                            "Honestly... I'm three months behind on payments. I just can't keep up anymore."
-                        </div>
-                        <div class="convo-bubble convo-bubble--you">
-                            <div class="convo-label convo-label--you">You (needs-based)</div>
-                            "How long has that been going on? And what happens if nothing changes in the next 60 days?"
-                        </div>
+                        <div class="breaks-foot">Fix all three and the same leads sign more contracts.</div>
                     </div>
                 </div>
             </div>
@@ -733,7 +780,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image reveal">
-                    <img src="assets/jon-jeremy-cropped.jpg" alt="Jon Lallande and Jeremy Miner at 7th Level HQ">
+                    <img src="assets/jon-jeremy-cropped.jpg" alt="Jon Lallande">
                 </div>
                 <div class="about-text reveal">
 
@@ -747,11 +794,11 @@
                     <p>Jon spent over $50K on sales training before realizing none of it was built for talking to distressed homeowners.
                     Sellers who are behind on payments, going through a foreclosure, dealing with probate, or just inherited a property they don't want.</p>
 
-                    <p>So he partnered with Jeremy Miner and 7th Level to build a needs-based selling process from scratch for wholesalers.
+                    <p>So he built needs-based selling from scratch for wholesalers, pulling from everything he studied and every seller call he ran.
                     Jon still runs his own deals, does live coaching calls with students every week, and owns over 100 buy-and-hold units.</p>
                     <div style="display:flex;gap:12px;margin-top:var(--space-5);">
-                        <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
-                        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+                        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                        <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
                     </div>
                 </div>
             </div>
@@ -789,13 +836,13 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta-band" id="event">
+    <section class="cta-band" id="talk">
         <div class="container">
-            <h2>Want to see this on real seller conversations?</h2>
-            <p>Live training where we walk through the entire needs-based approach on actual acquisitions calls.</p>
+            <h2>Want to see where your calls are losing deals?</h2>
+            <p>Book a call and we'll walk through how your team runs seller conversations and where your seller calls break down.</p>
             <div class="cta-row">
-                <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
-                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
             </div>
         </div>
     </section>
@@ -928,10 +975,10 @@
     <section class="final-cta" id="book">
         <div class="container">
             <h2 class="gradient-text">Your leads aren't the problem.</h2>
-            <p>It's what happens on the phone. See the process in action or talk to our team.</p>
+            <p>It's what happens on the phone. Book a call and we'll show you where your process breaks.</p>
             <div class="cta-row">
-                <a href="https://live.wholesalesalesacademy.com/save-your-seat" target="_blank" class="btn btn-primary">Attend Our Next Event</a>
-                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-secondary">Book a Call to Learn More</a>
+                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
             </div>
         </div>
     </section>
@@ -1026,18 +1073,22 @@
         const stepsContainer = document.querySelector('.steps');
         if (stepsContainer) stepObserver.observe(stepsContainer);
         function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
-        // Conversation animation
-        const convoObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bubbles = entry.target.querySelectorAll('.convo-bubble');
-                    bubbles.forEach((b, i) => { setTimeout(() => b.classList.add('visible'), i * 600); });
-                    convoObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-        const convoEl = document.getElementById('convoAnim');
-        if (convoEl) convoObserver.observe(convoEl);
+        // Three breaks animation: the line draws down and each break lights up as it passes
+        const breaksEl = document.getElementById('breaksAnim');
+        if (breaksEl) {
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const breaksObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target, steps = el.querySelectorAll('.brk');
+                    el.classList.add('go');
+                    steps.forEach((b, i) => setTimeout(() => b.classList.add('hit'), reduce ? 0 : 250 + i * 800));
+                    setTimeout(() => el.classList.add('done'), reduce ? 0 : 250 + steps.length * 800);
+                    breaksObserver.unobserve(el);
+                });
+            }, { threshold: 0.35 });
+            breaksObserver.observe(breaksEl);
+        }
         // Click YouTube thumbnail — try embed, fallback to YouTube.com
         document.addEventListener('click', function(e) {
             const placeholder = e.target.closest('.yt-placeholder');
