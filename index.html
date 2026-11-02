@@ -678,7 +678,7 @@
             </ul>
             <div class="nav-ctas">
                 <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary btn-sm">Check Us Out on YouTube</a>
-                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary btn-sm">Book a Call to Learn More</a>
+                <a href="https://go.wholesalesalesacademy.com/website?utm_source=website&amp;utm_medium=organic&amp;utm_campaign=homepage&amp;utm_content=nav" data-book="nav" target="_blank" class="btn btn-primary btn-sm">Book a Call to Learn More</a>
             </div>
             <button class="mobile-toggle" onclick="toggleMobileMenu()">&#9776;</button>
         </div>
@@ -690,7 +690,7 @@
         <a href="#about" onclick="toggleMobileMenu()">Who is Jon</a>
         <a href="#how" onclick="toggleMobileMenu()">How It Works</a>
         <a href="#results" onclick="toggleMobileMenu()">Results</a>
-        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary" onclick="toggleMobileMenu()">Book a Call to Learn More</a>
+        <a href="https://go.wholesalesalesacademy.com/website?utm_source=website&amp;utm_medium=organic&amp;utm_campaign=homepage&amp;utm_content=mobile-menu" data-book="mobile-menu" target="_blank" class="btn btn-primary" onclick="toggleMobileMenu()">Book a Call to Learn More</a>
         <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary" onclick="toggleMobileMenu()">Check Us Out on YouTube</a>
     </div>
 
@@ -704,7 +704,7 @@
                     <h1 class="gradient-text">Double your close rate <br class="h1-br">by mastering how sellers <br class="h1-br">make decisions.</h1>
                     <p class="hero-sub">Sales training built to work with human behavior instead of against it. Learn a sales process designed to get sellers to trust you, open up to you, and close themselves.</p>
                     <div class="hero-ctas">
-                        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                        <a href="https://go.wholesalesalesacademy.com/website?utm_source=website&amp;utm_medium=organic&amp;utm_campaign=homepage&amp;utm_content=hero" data-book="hero" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
                         <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
                     </div>
                 </div>
@@ -797,7 +797,7 @@
                     <p>So he built needs-based selling from scratch for wholesalers, pulling from everything he studied and every seller call he ran.
                     Jon still runs his own deals, does live coaching calls with students every week, and owns over 100 buy-and-hold units.</p>
                     <div style="display:flex;gap:12px;margin-top:var(--space-5);">
-                        <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                        <a href="https://go.wholesalesalesacademy.com/website?utm_source=website&amp;utm_medium=organic&amp;utm_campaign=homepage&amp;utm_content=about" data-book="about" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
                         <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
                     </div>
                 </div>
@@ -841,7 +841,7 @@
             <h2>Want to see where your calls are losing deals?</h2>
             <p>Book a call and we'll walk through how your team runs seller conversations and where your seller calls break down.</p>
             <div class="cta-row">
-                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                <a href="https://go.wholesalesalesacademy.com/website?utm_source=website&amp;utm_medium=organic&amp;utm_campaign=homepage&amp;utm_content=mid-page" data-book="mid-page" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
                 <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
             </div>
         </div>
@@ -977,7 +977,7 @@
             <h2 class="gradient-text">Your leads aren't the problem.</h2>
             <p>It's what happens on the phone. Book a call and we'll show you where your process breaks.</p>
             <div class="cta-row">
-                <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
+                <a href="https://go.wholesalesalesacademy.com/website?utm_source=website&amp;utm_medium=organic&amp;utm_campaign=homepage&amp;utm_content=final" data-book="final" target="_blank" class="btn btn-primary">Book a Call to Learn More</a>
                 <a href="https://www.youtube.com/@jonlallande" target="_blank" class="btn btn-secondary">Check Us Out on YouTube</a>
             </div>
         </div>
@@ -1038,7 +1038,7 @@
                     <a href="#how">How It Works</a>
                     <a href="#results">Results</a>
                     <a href="#faq">FAQ</a>
-                    <a href="https://go.wholesalesalesacademy.com/book-a-call-today" target="_blank">Book a Call</a>
+                    <a href="https://go.wholesalesalesacademy.com/website?utm_source=website&amp;utm_medium=organic&amp;utm_campaign=homepage&amp;utm_content=footer" data-book="footer" target="_blank">Book a Call</a>
                 </div>
             </div>
             <div class="footer-legal">
@@ -1089,6 +1089,21 @@
             }, { threshold: 0.35 });
             breaksObserver.observe(breaksEl);
         }
+        // Book a Call buttons -> go.wholesalesalesacademy.com/website (Zac, 2 Nov). Each button carries
+        // utm_content = where it sits. If the visitor reached the homepage with their own UTMs (an
+        // Instagram bio link, an email), those win for source/medium/campaign so the call keeps its
+        // real origin; fbclid and campaign_id ride along for any ad click that lands here first.
+        (function () {
+            var inbound = new URLSearchParams(location.search);
+            document.querySelectorAll('a[data-book]').forEach(function (a) {
+                var url = new URL(a.href);
+                ['utm_source', 'utm_medium', 'utm_campaign', 'fbclid', 'campaign_id'].forEach(function (k) {
+                    var v = inbound.get(k);
+                    if (v) url.searchParams.set(k, v);
+                });
+                a.href = url.toString();
+            });
+        })();
         // Click YouTube thumbnail — try embed, fallback to YouTube.com
         document.addEventListener('click', function(e) {
             const placeholder = e.target.closest('.yt-placeholder');
